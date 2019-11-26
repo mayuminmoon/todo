@@ -14,12 +14,13 @@ class TodoListsController < ApplicationController
 
   # GET /todo_lists/new
   def new
-    @todo_list = TodoList.new 
+    @todo_list = TodoList.new
     @categories = Category.all.map{|c| [ c.title, c.id ] }
   end
 
   # GET /todo_lists/1/edit
   def edit
+    @categories = Category.all.map{|c| [ c.title, c.id ] }
   end
 
   # POST /todo_lists
@@ -42,6 +43,7 @@ class TodoListsController < ApplicationController
   # PATCH/PUT /todo_lists/1
   # PATCH/PUT /todo_lists/1.json
   def update
+    @todo_list.category_id = params[:category_id] 
     respond_to do |format|
       if @todo_list.update(todo_list_params)
         format.html { redirect_to @todo_list, notice: 'Todo list was successfully updated.' }
