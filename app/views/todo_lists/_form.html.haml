@@ -13,5 +13,9 @@
   .field
     = form.label :description
     = form.text_area :description
+  .field
+    = form.label :category
+    = select_tag :category_id, options_for_select(@categories)
+
   .actions
     = form.submit

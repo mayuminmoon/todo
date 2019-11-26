@@ -14,7 +14,8 @@ class TodoListsController < ApplicationController
 
   # GET /todo_lists/new
   def new
-    @todo_list = TodoList.new
+    @todo_list = TodoList.new 
+    @categories = Category.all.map{|c| [ c.title, c.id ] }
   end
 
   # GET /todo_lists/1/edit
@@ -25,6 +26,7 @@ class TodoListsController < ApplicationController
   # POST /todo_lists.json
   def create
     @todo_list = TodoList.new(todo_list_params)
+    @todo_list.category_id = params[:category_id] 
 
     respond_to do |format|
       if @todo_list.save
