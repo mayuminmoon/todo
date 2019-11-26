@@ -7,12 +7,14 @@
     %tr
       %th Title
       %th Description
+      %th Category
       %th{:colspan => "3"}
   %tbody
     - @todo_lists.each do |todo_list|
       %tr
         %td= todo_list.title
         %td= todo_list.description
+        %td= link_to Category.find(todo_list.category_id).title #, category_path(todo_list.category_id)
         %td= link_to 'Show', todo_list
         %td= link_to 'Edit', edit_todo_list_path(todo_list)
         %td= link_to 'Destroy', todo_list, method: :delete, data: { confirm: 'Are you sure?' }
