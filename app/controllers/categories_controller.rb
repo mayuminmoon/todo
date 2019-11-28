@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   #before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @categories = Category.all
+    @category = Category.all
   end
 
   def show
@@ -14,14 +14,18 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    @category = Category.find(params[:id])
   end
 
   def create
     #render plain: params[:category].inspect
     @category = Category.new(category_params)
 
-    @category.save
-    redirect_to @category
+    if @category.save
+      redirect_to @category
+    else
+      render 'new'
+    end
 
     # @categories = Category.new(params.require(:category).permit(:title))
     # @categories.category_id = params[:category_id] 
@@ -35,6 +39,16 @@ class CategoriesController < ApplicationController
     #     format.json { render json: @categories.errors, status: :unprocessable_entity }
     #   end
     # end
+  end
+  
+  def update
+    @category = Category.find(params[:id])
+  
+    if @category.update(category_params)
+      redirect_to @category
+    else
+      render 'edit'
+    end
   end
 end
 
