@@ -1,6 +1,6 @@
 %p#notice= notice
 %h1 Categories
-= link_to 'Todo List', todo_lists_path
+= link_to 'New Category', new_category_path
 %br/
 %table
   %thead
@@ -15,7 +15,8 @@
         %td= category.title
         %td= link_to 'Show', category_path(category)
         %td= link_to 'Edit', edit_category_path(category)
-        %td= link_to 'Destroy', categories_path, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Destroy', category_path(category), method: :delete, data: { confirm: 'Are you sure?' }
 %br/
-= link_to 'New Category', new_category_path
+= link_to 'Todo List', todo_lists_path
+
 

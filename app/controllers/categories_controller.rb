@@ -40,7 +40,7 @@ class CategoriesController < ApplicationController
     #   end
     # end
   end
-  
+
   def update
     @category = Category.find(params[:id])
   
@@ -49,6 +49,13 @@ class CategoriesController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+  
+    redirect_to categories_path
   end
 end
 
